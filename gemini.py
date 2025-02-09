@@ -1,38 +1,49 @@
 import os
 import google.generativeai as genai
 import sys
+import getpass
 from rich.console import Console
 from rich.markdown import Markdown
+from rich.prompt import Prompt
 
-# Set environment variables to suppress gRPC logs
+# Suppress gRPC logs for cleaner output
 os.environ['GRPC_VERBOSITY'] = 'NONE'
 os.environ['GRPC_TRACE'] = 'none'
 
-# Initialize Rich console for better output formatting
+# Initialize Rich console for better formatting
 console = Console()
 
-# Prompt the user for the API key (not hardcoded)
-api_key = input("Enter your Gemini API Key: ")
+# Securely prompt for the API key
+api_key = getpass.getpass("Enter your Gemini API Key (hidden): ")
 
-# Initialize the API key
-genai.configure(api_key=api_key)
+# Configure the API key
+try:
+    genai.configure(api_key=api_key)
+except Exception as e:
+    console.print(f"\n[bold red]Error configuring API key:[/bold red] {e}")
+    sys.exit(1)
 
-# Create a chat session with the Gemini model
-model = "gemini-1.5-flash"  # Use the latest model version
-chat = genai.GenerativeModel(model).start_chat()
+# Initialize the chat session
+model = "gemini-1.5-flash"
+try:
+    chat = genai.GenerativeModel(model).start_chat()
+    console.print("\n[bold cyan]Start your conversation with Gemini![/bold cyan] (Type 'exit' to stop)\n")
+except Exception as e:
+    console.print(f"\n[bold red]Error starting chat:[/bold red] {e}")
+    sys.exit(1)
 
-console.print("\n[bold cyan]Start your conversation with Gemini![/bold cyan] (Type 'exit' to stop)\n")
-
-# Start the conversation loop
+# Conversation loop
 while True:
-    user_input = input("\n[You]: ")  # Get user input
-    if user_input.lower() == "exit":  # If the user types 'exit', end the chat
+    user_input = Prompt.ask("\n[You]")  # Uses Rich for cleaner input prompt
+    if user_input.lower() == "exit":
         console.print("\n[bold red]Ending the conversation...[/bold red]")
         break
 
-    # Send the user message to the model and get the response
-    response = chat.send_message(user_input)
-
-    # Print the AI's response with better formatting
-    console.print("\n[bold green]Gemini:[/bold green]\n")
-    console.print(Markdown(response.text))  # Display AI response in Markdown format
+    try:
+        response = chat.send_message(user_input)
+        response_text = response.text.strip() if response.text else "**[No response received]**"
+        
+        console.print("\n[bold green]Gemini:[/bold green]\n")
+        console.print(Markdown(response_text))  # Display AI response in Markdown format
+    except Exception as e:
+        console.print(f"\n[bold red]Error:[/bold red] {e}")
