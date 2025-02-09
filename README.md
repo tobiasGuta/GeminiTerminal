@@ -5,3 +5,9 @@ GeminiTerminal: A command-line interface (CLI) tool for seamless interaction wit
 
 https://github.com/user-attachments/assets/41c5063e-bafb-40bd-892f-1e2f11ef3a4d
 
+# Updates
+[2/9/2025] 
+✔ Secure API Key Input using getpass.getpass()
+✔ Error Handling for API key issues, network failures, or empty responses
+✔ Better Input Handling using Prompt.ask() for clean formatting
+✔ Handles Empty Responses to avoid crashes
