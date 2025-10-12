@@ -20,6 +20,9 @@ https://github.com/user-attachments/assets/782be8fc-7837-49b1-a7e2-ab87642fb391
 **[2/9/2025]**
 - ✔ Added `gemini_c&p.py`: It functions similarly to the previous version but with a key improvement: it now handles pasting code across multiple lines without breaking in the terminal or causing errors in the output.
 
+**[10/12/2025]**
+- ✔ Update Gemini model to gemini-flash-latest to fix SDK compatibility
+
 
 
 
