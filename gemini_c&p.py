@@ -23,7 +23,7 @@ except Exception as e:
     sys.exit(1)
 
 # Initialize the chat session
-model = "gemini-1.5-flash"
+model = "gemini-flash-latest"
 try:
     chat = genai.GenerativeModel(model).start_chat()
     console.print("\n[bold cyan]Start your conversation with Gemini![/bold cyan] (Type 'exit' or 'quit' to stop)\n")
