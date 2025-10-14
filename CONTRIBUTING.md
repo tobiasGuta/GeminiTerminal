@@ -1,6 +1,6 @@
-# Contributing to FTPHunter
+# Contributing to GeminiTerminal
 
-We’re excited that you want to contribute to sub-enum! Please take a moment to review the following guidelines to make the contribution process easier for everyone.
+We’re excited that you want to contribute to GeminiTerminal! Please take a moment to review the following guidelines to make the contribution process easier for everyone.
 
 ## How to Contribute
 
