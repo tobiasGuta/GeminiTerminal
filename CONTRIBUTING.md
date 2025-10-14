@@ -20,4 +20,4 @@ If you have an idea for a new feature or enhancement, please create an issue in 
 1. **Fork the repository**: Click the "Fork" button at the top right of this page.
 2. **Clone your fork**: Clone your fork to your local machine.
    ```bash
-   git clone https://github.com/tobiasGuta/FTPHunter.git
+   git clone https://github.com/tobiasGuta/GeminiTerminal.git
